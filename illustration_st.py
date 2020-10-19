@@ -1,5 +1,5 @@
 import dhlab.module_update as mu
-mu.update("nbpictures", silent = True)
+#mu.update("nbpictures", silent = True)
 from nbpictures import urns_from_super, iiif_manifest, display_finds, get_urls_from_illustration_data,get_illustration_data_from_book
 from IPython.display import HTML, Markdown, display
 import streamlit as st
