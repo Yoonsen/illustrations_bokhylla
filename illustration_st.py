@@ -27,7 +27,7 @@ except:
     True
     
 #u = st.text_input('URN', urns[0])
-st.write(c)
+
 c = st.checkbox('Vis bare en del av bildene - om boken ikke er åpen for alle', value = c)
 
 st.markdown('\n'.join(['**' + x + '**: ' + mdata[x] for x in mdata]), unsafe_allow_html=True)
