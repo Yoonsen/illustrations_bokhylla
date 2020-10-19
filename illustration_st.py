@@ -10,12 +10,15 @@ st.image(image, width = 200)
 st.markdown('Se mer om å drive analytisk DH på [DHLAB-siden](https://nbviewer.jupyter.org/github/DH-LAB-NB/DHLAB/blob/master/DHLAB_ved_Nasjonalbiblioteket.ipynb), og korpusanalyse via web [her](https://beta.nb.no/korpus/)')
 
 
-search = st.text_input('Søk etter', 'naturen')
+search = st.text_input('Søk etter', '')
 period_slider = st.slider(
     'Angi periode - år mellom 1700 og 2014',
     1700, 2020, (1700, 2020)
 )              
-urns = urns_from_super(search, period=("{s}0101".format(s = period_slider[0]), "{s}1231".format(s=period_slider[1])))
+if search == "":
+    urns = ["URN:NBN:no-nb_digibok_2017081626006"]
+else:
+    urns = urns_from_super(search, period=("{s}0101".format(s = period_slider[0]), "{s}1231".format(s=period_slider[1])))
 
 u = st.selectbox("Velg en bok (URN) fra listen under", urns[:10])
 
