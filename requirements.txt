@@ -1,0 +1,15 @@
+numpy
+pandas
+dhlab
+streamlit
+matplotlib
+requests
+IPython
+seaborn
+scipy
+networkx
+wordcloud
+community
+python-louvain
+Pillow
+
