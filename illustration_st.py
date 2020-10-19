@@ -37,4 +37,5 @@ st.markdown('\n'.join(['**' + x + '**: ' + mdata[x] for x in mdata]), unsafe_all
 
 urls = [get_urls_from_illustration_data(ur, cuts = c) for ur in get_illustration_data_from_book(u) ]
 #st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls][:100]))
-st.markdown('\n'.join(["""<img src="{i}"  width=100% max-width=600px; />""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
+st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
+    '\n'.join(["""<div><img src="{i}"  width=100% max-width=600px; /></div>""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
