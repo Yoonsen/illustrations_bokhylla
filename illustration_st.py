@@ -17,4 +17,4 @@ c = st.checkbox('deler')
 st.markdown('\n'.join(['**' + x['label'] + '**: ' + x['value'] for x in iiif_manifest(u)['metadata']]), unsafe_allow_html=True)
 
 urls = [get_urls_from_illustration_data(ur, cuts = c) for ur in get_illustration_data_from_book(u) ]
-st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls]))
+st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls][:100]))
