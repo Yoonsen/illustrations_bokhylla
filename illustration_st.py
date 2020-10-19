@@ -13,7 +13,7 @@ st.markdown('Se mer om å drive analytisk DH på [DHLAB-siden](https://nbviewer.
 search = st.text_input('Søk etter', 'naturen')
 period_slider = st.slider(
     'Angi periode - år mellom 1700 og 2014',
-    1700, 2020, (1800, 1920)
+    1700, 2020, (1700, 2020)
 )              
 urns = urns_from_super(search, period=("{s}0101".format(s = period_slider[0]), "{s}1231".format(s=period_slider[1])))
 
