@@ -130,7 +130,7 @@ def get_urls_from_illustration_data(illus, part = True, scale = None, cuts = Tru
 
 def show_illustrations_urn(urn, tilgjengelig = 'fritt'):
    
-    display(Markdown('\n'.join(['**' + x['label'] + '**: ' + x['value'] for x in iiif_manifest(urn)['metadata']])))
+    IPython.display(Markdown('\n'.join(['**' + x['label'] + '**: ' + x['value'] for x in iiif_manifest(urn)['metadata']])))
     
     if tilgjengelig.lower().startswith('fri'):
         c = False
