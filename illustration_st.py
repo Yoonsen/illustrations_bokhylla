@@ -24,7 +24,7 @@ u = st.selectbox("Velg en bok (URN) fra listen under", urns[:10])
 
 mdata = dict()
 try:
-    mdata = {x['label']:x['value'] for x in iiif_manifest(urns[0])['metadata']}
+    mdata = {x['label']:x['value'] for x in iiif_manifest(u)['metadata']}
     c = not 'alle' in mdata['Tilgang']
 except:
     True
