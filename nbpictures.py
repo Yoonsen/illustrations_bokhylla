@@ -17,7 +17,8 @@ def nb_search(
     mediatype = 'bøker', 
     lang = "nob",
     period = (18000101, 20401231),
-    extra_filters = None
+    extra_filters = None,
+    extra_conditions = None
 ):
     """Søk etter term og få ut json"""
     
@@ -32,7 +33,10 @@ def nb_search(
         'page':page, 
         'size':number
     }
-    
+    if extra_conditions != None:
+        for x in extra_conditions:
+            params[x] = extra_conditions[x]
+            
     if lang != '':
         aq.append('languages:{lang}'.format(lang = lang ))
     
@@ -79,10 +83,11 @@ def urns_from_super(
     mediatype = 'bøker', 
     lang = "nob",
     period = (18000101, 20401231),
-    filters = None
+    filters = None,
+    conditions = None
 ):
     
-    res = nb_search(term, mediatype = mediatype, creator = creator, number=number, page = page, lang = lang, period = period, extra_filters = filters)
+    res = nb_search(term, mediatype = mediatype, creator = creator, number=number, page = page, lang = lang, period = period, extra_filters = filters, extra_conditions = conditions)
     ids = [x['metadata']['identifiers']  for x in res['_embedded']['items'] ]
     return [x['urn'] for x in ids if 'urn' in x]
 
