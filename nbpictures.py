@@ -16,7 +16,8 @@ def nb_search(
     page = 0, 
     mediatype = 'bøker', 
     lang = "nob",
-    period = (18000101, 20401231)
+    period = (18000101, 20401231),
+    extra_filters = None
 ):
     """Søk etter term og få ut json"""
     
@@ -25,7 +26,8 @@ def nb_search(
     filters = []
     aq = []
     
-
+    if extra_filters != None:
+        filters += extra_filters
     params = {
         'page':page, 
         'size':number
@@ -76,10 +78,11 @@ def urns_from_super(
     page = 0, 
     mediatype = 'bøker', 
     lang = "nob",
-    period = (18000101, 20401231)
+    period = (18000101, 20401231),
+    filters = None
 ):
     
-    res = nb_search(term, mediatype = mediatype, creator = creator, number=number, page = page, lang = lang, period = period)
+    res = nb_search(term, mediatype = mediatype, creator = creator, number=number, page = page, lang = lang, period = period, extra_filters = filters)
     ids = [x['metadata']['identifiers']  for x in res['_embedded']['items'] ]
     return [x['urn'] for x in ids if 'urn' in x]
 
