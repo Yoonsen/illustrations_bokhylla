@@ -40,13 +40,14 @@ try:
 except:
     'ingen funn'
 c = st.checkbox('Vis kun et utsnitt av bildene - for bøker med forskjellig grad av tilgangskontroll', value = c)
-   
+
 #u = st.text_input('URN', urns[0])
 
 
 st.markdown('\n'.join(['**' + x + '**: ' + mdata[x] for x in mdata]), unsafe_allow_html=True)
 
-urls = [get_urls_from_illustration_data(ur, cuts = c) for ur in get_illustration_data_from_book(u) ]
+delta = st.number_input('Utvid bilde (fungerer best om bildet er fritt tilgjengelig)', 0, 50, 0)  
+urls = [get_urls_from_illustration_data(ur, cuts = c, delta = delta) for ur in get_illustration_data_from_book(u) ]
 #st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls][:100]))
 st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
     '\n'.join(["""<div><img src="{i}"  width=100% max-width=600px; /></div>""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
