@@ -46,7 +46,7 @@ c = st.checkbox('Vis kun et utsnitt av bildene - for bøker med forskjellig grad
 
 st.markdown('\n'.join(['**' + x + '**: ' + mdata[x] for x in mdata]), unsafe_allow_html=True)
 
-delta = st.number_input('Utvid bilde (fungerer best om bildet er fritt tilgjengelig)', 0, 50, 0)  
+delta = st.number_input('Utvid bildesnittet (fungerer best om bildet er fritt tilgjengelig)', 0, 50, 0)  
 urls = [get_urls_from_illustration_data(ur, cuts = c, delta = delta) for ur in get_illustration_data_from_book(u) ]
 #st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls][:100]))
 st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
