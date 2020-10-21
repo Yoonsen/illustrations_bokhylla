@@ -15,7 +15,7 @@ period_slider = st.slider(
     'Angi periode - år mellom 1700 og 2014',
     1700, 2020, (1700, 2020)
 ) 
-open_access = st.checkbox('Vis bøker innenfor bokhylla-avtalen', value = True)
+open_access = st.checkbox('Vis bare bøker som er mer eller mindre fritt tilgjengelig.', value = True)
 if open_access:
     conditions = {'digitalAccessibleOnly':'true','profile':'wwwnbno'}
 else:
@@ -39,7 +39,7 @@ try:
     c = not 'alle' in mdata['Tilgang']
 except:
     'ingen funn'
-c = st.checkbox('Vis kun et utsnitt av bildene - om boken ikke er helt fritt tilgjengelig', value = c)
+c = st.checkbox('Vis kun et utsnitt av bildene - for bøker med forskjellig grad av tilgangskontroll', value = c)
    
 #u = st.text_input('URN', urns[0])
 
