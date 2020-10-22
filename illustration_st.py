@@ -55,4 +55,4 @@ books = {u:[get_urls_from_illustration_data(ill, cuts = c, delta = delta) for il
 #st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
 #    '\n'.join(["""<div><img src="{i}"  width=100% max-width=600px; /></div>""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
 
-st.markown(display_books(books), unsafe_allow_html = True)
+st.markdown(display_books(books), unsafe_allow_html = True)
