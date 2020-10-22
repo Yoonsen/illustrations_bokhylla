@@ -1,6 +1,6 @@
 import dhlab.module_update as mu
 #mu.update("nbpictures", silent = True)
-from nbpictures import urns_from_super, iiif_manifest, display_finds, get_urls_from_illustration_data,get_illustration_data_from_book
+from nbpictures import urns_from_super, iiif_manifest, display_finds, get_urls_from_illustration_data,get_illustration_data_from_book, display_books
 from IPython.display import HTML, Markdown, display
 import streamlit as st
 from PIL import Image
@@ -46,8 +46,13 @@ c = st.checkbox('Vis kun et utsnitt av bildene - for bøker med forskjellig grad
 
 st.markdown('\n'.join(['**' + x + '**: ' + mdata[x] for x in mdata]), unsafe_allow_html=True)
 
-delta = st.number_input('Utvid bildesnittet (fungerer best om bildet er fritt tilgjengelig)', 0, 50, 0)  
-urls = [get_urls_from_illustration_data(ur, cuts = c, delta = delta) for ur in get_illustration_data_from_book(u) ]
+delta = st.number_input('Utvid bildesnittet (fungerer best om bildet er fritt tilgjengelig)', 0, 50, 0) 
+
+books = {u:[get_urls_from_illustration_data(ill, cuts = c, delta = delta) for ill in get_illustration_data_from_book(u)[:20]] for u in urns[:5]}
+
+#urls = [get_urls_from_illustration_data(ur, cuts = c, delta = delta) for ur in get_illustration_data_from_book(u) ]
 #st.markdown('\n'.join(["![]({i})".format(i=u) for u in urls][:100]))
-st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
-    '\n'.join(["""<div><img src="{i}"  width=100% max-width=600px; /></div>""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
+#st.markdown("<style>div {margin-top:1px; margin-bottom:2px}</style>\n" +
+#    '\n'.join(["""<div><img src="{i}"  width=100% max-width=600px; /></div>""".format(i=u) for u in urls][:100]), unsafe_allow_html = True)
+
+st.markown(display_books(books), unsafe_allow_html = True)
