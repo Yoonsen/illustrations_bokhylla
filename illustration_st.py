@@ -29,8 +29,8 @@ st.markdown('Se mer om å drive analytisk DH på [DHLAB-siden](https://nbviewer.
 
 search = st.text_input('Søk etter', '')
 period_slider = st.slider(
-    'Angi periode - år mellom 1700 og 2014',
-    1700, 2020, (1700, 2020)
+    'Angi periode - år mellom 1500 og 2014',
+    1700, 2020, (1500, 2020)
 ) 
 open_access = st.checkbox('Vis bare bøker som er mer eller mindre fritt tilgjengelig.', value = True)
 if open_access:
