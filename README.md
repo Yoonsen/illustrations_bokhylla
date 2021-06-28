@@ -4,6 +4,9 @@ Fetch illustrations from bokhylla
 
 
 # Dockerfile
+
+Legg inn i en fil ved navn `Dockerfile`
+
 ```
 FROM python:3.8
 EXPOSE 8501
@@ -14,6 +17,7 @@ COPY . .
 CMD streamlit run app.py
 ```
 
+Kjør kommandoene i terminal
 ```
 docker build -t gcr.io/norwegian-language-bank/appname:v1 .
 kubectl create deployment foodlessons-app --image=gcr.io/norwegian-language-bank/foodlessons_webapp:v1
