@@ -1,8 +1,4 @@
-import dhlab.module_update as mu
-#mu.update("nbpictures", silent = True)
-from nbpictures import iiif_manifest, display_finds, get_urls_from_illustration_data, get_illustration_data_from_book, large_scale, small_scale
 from IPython.display import HTML, Markdown, display
-import streamlit as st
 from PIL import Image
 
 import sqlite3
@@ -27,6 +23,38 @@ def pdquery(db, sql, params=()):
         res = pd.read_sql_query(sql, con, params=params)
     return res
 
+def get_urls_from_illustration_data(illus, part = True, scale = None, cuts = True, delta = 0):
+    """From infomration about a picture on a page in a book (or newspaper) generate a link to a picture.
+    part sets size of output of page, it takes the value True or a number. If part is True it returns the cut out of image.
+    illus is a dictionary of with entries and values like this: 
+    {'height': 270, 'hpos': 251, 'page': 'digibok_2017081626006_0018', 'resolution': 400, 'vpos': 791, 'width': 373} 
+    the variable cuts, if true allows cropping of image - restricted images must not go over 1024 x 1024 pixels"""
+    
+    if scale == None:
+        if illus['resolution'] >= 300 or illus['resolution'] < 100:
+            scale = large_scale
+        else:
+            scale = small_scale
+            
+    height = int(illus['height']) + 2*delta
+    width = int(illus['width']) + 2*delta
+    vpos = int(illus['vpos']) - delta
+    hpos = int(illus['hpos']) - delta
+    
+    if cuts != False:
+        if width * scale > 1024:
+            width = int(1024/scale)
+        if height * scale > 1024:
+            height = int(1024/scale)
+            
+    urn = f"URN:NBN:no-nb_{illus['page']}"
+    if part == True:
+        # return cut out
+        url = f"https://www.nb.no/services/image/resolver/{urn}/{int(hpos*scale)},{int(vpos*scale)},{int(width*scale)},{int(height*scale)}/full/0/native.jpg"
+    else:
+        # return whole page
+        url = f"https://www.nb.no/services/image/resolver/{urn}/full/0,{part}/0/native.jpg"    
+    return url
 
 def display_finds(r, width = 500):
     """A list of urls in r is displayed as HTML"""
