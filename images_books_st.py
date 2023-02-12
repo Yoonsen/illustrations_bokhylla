@@ -39,7 +39,7 @@ image = Image.open('NB-logo-no-eng-svart.png')
 
 st.image(image, width = 200)
 
-st.markdown('Sjekk [DHLAB-siden](https://nbviewer.jupyter.org/github/DH-LAB-NB/DHLAB/blob/master/DHLAB_ved_Nasjonalbiblioteket.ipynb) for mer om DH ved Nasjonalbiblioteket')
+st.markdown('Sjekk [DHLAB-siden](https://nb.no/dhlab) for mer om DH ved Nasjonalbiblioteket')
 
 col1, col2 = st.columns(2)
 with col1:
